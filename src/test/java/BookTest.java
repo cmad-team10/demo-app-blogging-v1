@@ -1,3 +1,5 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.junit.Test;
 
 import com.glarimy.cmad.library.api.Book;
@@ -11,9 +13,6 @@ public class BookTest {
 	
 	@Test
 	public void testBookInsert(){
-		Book book = new Book();
-		book.setIsbn(123456789);
-		book.setTitle("Java Adv111");
-		library.add(book);
+       //TODO
 	}
 }
