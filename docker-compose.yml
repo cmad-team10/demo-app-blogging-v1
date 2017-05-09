@@ -5,7 +5,7 @@ networks:
     
 services: 
   app: 
-    image: harshajayaram/cmadrestapp:latest
+    image: kavithabk/demo-app-blogging-v1 
     ports: 
       - 7000:8080
     networks: 
