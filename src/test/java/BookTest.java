@@ -14,5 +14,10 @@ public class BookTest {
 	@Test
 	public void testBookInsert(){
        //TODO
+		Book testdata = new Book();
+		testdata.setIsbn(12356);
+		testdata.setTitle("ram");
+		GlarimyLibrary test1 = new GlarimyLibrary();
+		test1.add(testdata);
 	}
 }
