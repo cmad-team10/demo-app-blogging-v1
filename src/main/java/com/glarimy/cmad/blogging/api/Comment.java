@@ -1,7 +1,11 @@
 package com.glarimy.cmad.blogging.api;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+
+@Entity
 public class Comment {
-	
+	@Id
 	private int commentId;
 	private int blogId;
 	private String commentData;

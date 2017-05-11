@@ -1,10 +1,24 @@
 package com.glarimy.cmad.blogging.api;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.glarimy.cmad.blogging.api.Comment;
+
+
+@Entity
 public class Blog {
-	
+	@Id
 	private int blogId;
 	private String titile;
 	private String details;
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Comment> blogs;
 	private int userId;
 	public Blog(int blogId, String titile, String details, int userId) {
 		super();
