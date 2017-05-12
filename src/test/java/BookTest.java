@@ -15,8 +15,8 @@ public class BookTest {
 	public void testBookInsert(){
        //TODO
 		Book testdata = new Book();
-		testdata.setIsbn(56);
-		testdata.setTitle("sunil");
+		testdata.setIsbn(5893);
+		testdata.setTitle("kavitha");
 		GlarimyLibrary test1 = new GlarimyLibrary();
 		test1.add(testdata);
 	}
