@@ -1,5 +1,7 @@
 package com.glarimy.cmad.blogging.service;
 
+import java.util.List;
+
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.BlogContentDataException;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
@@ -27,6 +29,23 @@ public class GlarimyBlogLibrary implements BlogLibrary{
 			throw new BlogNotFoundException();
 		return blog;
 
+	}
+
+	@Override
+	public void update(Blog blog) throws BlogContentDataException,
+			BlogLibraryException {
+		Blog blogDB = dao.read(blog.getBlogId());
+		if (blogDB == null)
+			throw new BlogNotFoundException();
+		dao.update(blog);
+		
+	}
+
+	@Override
+	public List<Blog> findAll() throws BlogNotFoundException,
+			BlogLibraryException {
+		List<Blog> blogs = dao.readAll();		
+		return blogs;
 	}
 
 }
