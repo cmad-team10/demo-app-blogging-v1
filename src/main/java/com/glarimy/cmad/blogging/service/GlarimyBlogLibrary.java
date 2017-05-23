@@ -3,6 +3,7 @@ package com.glarimy.cmad.blogging.service;
 import java.util.List;
 
 import com.glarimy.cmad.blogging.api.Blog;
+import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogContentDataException;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
 import com.glarimy.cmad.blogging.api.BlogLibraryException;
@@ -18,8 +19,13 @@ public class GlarimyBlogLibrary implements BlogLibrary{
 	public void add(Blog blog) throws BlogContentDataException, BlogLibraryException {
 		// TODO Auto-generated method stub
 		dao.create(blog);
-		
 	}
+	
+    @Override
+    public void addComment(Comment comment) {
+    	// TODO Auto-generated method stub
+    	dao.createComment(comment);
+    }
 
 	@Override
 	public Blog find(int blogid) throws BlogNotFoundException, BlogLibraryException {

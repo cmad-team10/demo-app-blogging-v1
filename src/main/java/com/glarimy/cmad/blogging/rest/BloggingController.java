@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.glarimy.cmad.blogging.api.Blog;
+import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
 import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
 
@@ -28,6 +29,15 @@ public class BloggingController {
 		library.add(blog);
 		return Response.ok().build();
 	}
+	
+	@POST
+	@Path("/blog/{blogid}/comment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addComment(Comment comment,@PathParam("blogid") int blogid) {
+		comment.setBlogId(blogid);
+		library.addComment(comment);
+		return Response.ok().build();
+    }
 	
 	@PUT
 	@Path("/blog")
