@@ -37,13 +37,25 @@ $(document).ready(function() {
 		viewList();
 	});
 	
-	$(".list-blog").click(function(e) {
+	//when ckicked on blog from the blog list
+	$("#list-blog-list").on("click", ".list-blog", function(event){
 		console.log("id:"+this.id);
 		$("#create-blog").hide();
 		$("#list-blog").hide();
 		$("#view-blog").show();
-		
+		$.ajax({
+			url : 'rest/blogging/blog/'+this.id,
+			type : 'get',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(data) {
+				console.log(data);
+				$('#view-blog-title').html(data.titile);
+				$('#view-blog-content').html(data.details);
+			}
+		});
 	});
+	
 	
 	
 	function viewList(){
