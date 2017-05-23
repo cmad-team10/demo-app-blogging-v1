@@ -51,7 +51,7 @@ $(document).ready(function() {
 			success : function(data) {
 				console.log(data);
 				$('#view-blog-title').html(data.titile);
-				$('#view-blog-content').html(data.details);
+				$('#view-blog-content').html(data.details.replace(/\n/g, '<br>'));
 			}
 		});
 	});
