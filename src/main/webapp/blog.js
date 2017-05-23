@@ -5,8 +5,30 @@ $(document).ready(function() {
 		console.log("create blog");
 		$("#list-blog").hide();
 		$("#view-blog").hide();
-		$("#create-blog").show();
+		$("#create-blog").show();		
 	});
+	
+	$("#create-blog-submit").click(function(e){
+		console.log('inside create-blog-submit:'+blog);
+		var title = $("#create-blog-title").val();
+		var content = $("#create-blog-content").val();
+		var blog = {
+			"titile" : title,
+			"details" : content
+		}
+		console.log('calling:'+blog);
+		$.ajax({
+			url : 'rest/blogging/blog',
+			type : 'post',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(data) {
+				alert("Blog Added successfully");
+			},
+			data : JSON.stringify(blog)
+		});
+		//("#list-blog-icon a").trigger('click');
+	})
 	
 	$("#list-blog-icon").click(function(e) {
 		$("#create-blog").hide();
@@ -23,18 +45,6 @@ $(document).ready(function() {
 		
 	});
 	
-	/*$("#addBlog").click(function() {
-		$("#addForm").hide();
-		$.ajax({
-			url : 'rest/blogging/blog',
-			type : 'get',
-			dataType : 'json',
-			contentType: "application/json; charset=utf-8",
-			success : function(data) {
-				alert('Data received;'+data);
-			}
-		});
-	});*/
 	
 	function viewList(){
 		console.log("calling viewList");

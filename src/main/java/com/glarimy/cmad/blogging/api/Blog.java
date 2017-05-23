@@ -3,8 +3,11 @@ package com.glarimy.cmad.blogging.api;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,6 +19,8 @@ import com.glarimy.cmad.blogging.api.Comment;
 @XmlRootElement
 public class Blog {
 	@Id
+	@Column(name="blogId")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int blogId;
 	private String titile;
 	private String details;
