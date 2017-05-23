@@ -23,11 +23,11 @@ $(document).ready(function() {
 			dataType : 'json',
 			contentType: "application/json; charset=utf-8",
 			success : function(data) {
-				alert("Blog Added successfully");
+				("#list-blog-icon a").trigger('click');
 			},
 			data : JSON.stringify(blog)
-		});
-		//("#list-blog-icon a").trigger('click');
+		});	
+		console.log("here");
 	})
 	
 	$("#list-blog-icon").click(function(e) {

@@ -12,7 +12,7 @@ public class BlogTest {
 		Blog testdata = new Blog();
 		testdata.setBlogId(3);
 		testdata.setTitile("First Blog");
-		testdata.setDetails("Blog !!!!!!");
+		//testdata.setDetails("Blog !!!!!!");
 		testdata.setUserId(12);
 		
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();

@@ -1,5 +1,6 @@
 package com.glarimy.cmad.blogging.api;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,6 +25,7 @@ public class Blog {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int blogId;
 	private String titile;
+	@Lob
 	private String details;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Comment> blogs;
