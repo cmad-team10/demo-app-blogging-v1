@@ -2,57 +2,86 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Online Library</title>
-<link href="library.css" rel="stylesheet" />
-<script src="jquery-2.1.3.js"></script>
-<script src="library.js"></script>
+<title>My Blog</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="jquery-2.1.3.js"></script>
+  
+    <link href="blog.css" rel="stylesheet" />
+
+	<script src="blog.js"></script>
+
 </head>
 <body>
-	<h1>Glarimy Online Library</h1>
-	<a href="#" id="addLink">Add Book</a> |
-	<a href="#">Find Book</a>
-	<hr />
-	<div id='addForm'>
-		<h2>Add New Book</h2>
-		<table>
-			<tr>
-				<td>ISBN:</td>
-				<td><input id='isbn' /></td>
-			</tr>
-			<tr>
-				<td>Title:</td>
-				<td><input id='title' /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><button id="addBtn">Add Book</button></td>
-			</tr>
-		</table>
+  <div class="container">
+   
+   <!-- Header section-->
+    <div class="row" style="background-color: grey;">
+	    <div class="col-sm-9">
+	    	<h2>My First Bootstrap Page</h2>
+	    </div>
+	    <div class="col-sm-1" id="create-blog-icon">
+	    	<h4>Create</h4>
+	    </div> 
+	    <div class="col-sm-1" id="list-blog-icon">
+	    	<h4>List</h4>
+	    </div> 
+	    <div class="col-sm-1">
+	    	<h4>Profile</h4>
+	    </div>       
 	</div>
-	<div id='addResult'>Successfully added the book!</div>
-	<div id='findForm'>
-		<h2>Search Library</h2>
-		<table>
-			<tr>
-				<td>ISBN:</td>
-				<td><input id='isbn' /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><button>Find Book</button></td>
-			</tr>
-		</table>
+	
+	<!-- List blog Section -->
+	<div class="row" id="list-blog" >
+	 <h4>Listing Blogs</h4>
+		<ul class="list-group" id="list-blog-list">
+		</ul>
 	</div>
-	<div id='findResult'>
-		<h2>Search Results</h2>
-		<table>
-			<tr>
-				<td>ISBN:</td>
-				<td>123</td>
-			</tr>
-			<tr>
-				<td>Title:</td>
-				<td>asdfaf asdf</td>
-			</tr>
-		</table>
+	
+	<!-- Create blog Section -->
+	<div class="row" id="create-blog" >
+	  <h4>Create Blog</h4>
+	  <form>
+		  <div class="form-group">
+		    <label for="Title">Title</label>
+		    <input type="text" class="form-control" id="create-blog-title">
+		  </div>
+		  <div class="form-group">
+		    <label for="create-blog-content">Content</label>
+		    <input type="text" class="form-control" id="create-blog-content">
+		  </div>
+		  <button type="submit" class="btn btn-primary" id="create-blog-submit">Submit</button>
+	  </form>	
 	</div>
+	
+	<!-- View blog content section -->
+	<div class="row" id="view-blog" >
+	 <h4>Blog Details</h4>
+		<h5>Title</h4>
+		<p>But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+		<form>
+		  <div class="form-group">
+		    <label for="create-blog-comment">Add Comment</label>
+		    <input type="text" class="form-control" id="create-blog-comment">
+		  </div>		  
+		  <button type="submit" class="btn btn-primary" id="create-comment-submit">Submit</button>
+	  </form>
+	  <h4>Comments</h4>
+	  <ul class="list-group">
+  			<li class="list-group-item">First comment data</li>
+  			<li class="list-group-item">Second comment data</li>
+  			<li class="list-group-item">Third comment data</li>
+		</ul>
+	</div>
+	
+ </div>	
+ 
 </body>
 </html>

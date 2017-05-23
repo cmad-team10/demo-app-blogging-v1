@@ -6,7 +6,7 @@ import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
 
 public class BlogTest {
 	
-	@Test
+
 	public void testBlogInsert(){
        //TODO
 		Blog testdata = new Blog();
