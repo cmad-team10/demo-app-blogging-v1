@@ -54,4 +54,10 @@ public class GlarimyBlogLibrary implements BlogLibrary{
 		return blogs;
 	}
 
+	@Override
+	public List<Comment> findComments(int blogid) {
+		List<Comment> comments = dao.readComments(blogid);
+		return comments;
+	}
+
 }

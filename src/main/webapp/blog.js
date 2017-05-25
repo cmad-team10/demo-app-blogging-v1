@@ -39,10 +39,12 @@ $(document).ready(function() {
 	
 	//when ckicked on blog from the blog list
 	$("#list-blog-list").on("click", ".list-blog", function(event){
+		$("#blog-comment-list").empty();
 		console.log("id:"+this.id);
 		$("#create-blog").hide();
 		$("#list-blog").hide();
 		$("#view-blog").show();
+		$("#create-comment-blogId").val(this.id);
 		$.ajax({
 			url : 'rest/blogging/blog/'+this.id,
 			type : 'get',
@@ -54,9 +56,40 @@ $(document).ready(function() {
 				$('#view-blog-content').html(data.details.replace(/\n/g, '<br>'));
 			}
 		});
+		$.ajax({
+			url : 'rest/blogging/blog/'+this.id+'/comment',
+			type : 'get',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(data) {
+				console.log(data);
+				$.each(data, function(idx, data){
+				     $("#blog-comment-list").append( '<li class="list-group-item">'+data.commentData+'</li>');
+				   });
+			}
+		});
+		
 	});
 	
-	
+	$("#create-comment-submit").click(function(){
+		var blogId = $("#create-comment-blogId").val();
+		var commentData = $("#create-blog-comment").val();	
+		var comment = {
+				"blogId" : blogId,
+				"commentData" : commentData
+			}
+		$.ajax({
+			url : 'rest/blogging/blog/'+blogId+'/comment',
+			type : 'post',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(data) {
+				console.log("create-comment-submit:"+data);
+				$("#blog-comment-list").append( '<li class="list-group-item">'+commentData+'</li>');
+			},
+			data : JSON.stringify(comment)
+		});	
+	});
 	
 	function viewList(){
 		console.log("calling viewList");

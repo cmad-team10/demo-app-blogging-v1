@@ -10,4 +10,5 @@ public interface BlogLibraryDAO {
 	public void update(Blog blog);
 	public List<Blog> readAll();
 	public void createComment(Comment comment);
+	public List<Comment> readComments(int blogid);
 }
