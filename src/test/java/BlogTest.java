@@ -19,10 +19,10 @@ public class BlogTest {
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();
 		test1.add(testdata);
 	}
-
+        @Test
 	public void testCommentInsert() {
 		Comment testdata = new Comment();
-		testdata.setCommentId(1);
+		testdata.setCommentId(20);
 		testdata.setBlogId(1);
 		testdata.setCommentData("Comment");
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();
