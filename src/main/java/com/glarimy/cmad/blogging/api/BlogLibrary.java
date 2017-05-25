@@ -17,4 +17,6 @@ public interface BlogLibrary {
 	public List<Blog> findAll() throws BlogNotFoundException, BlogLibraryException;
 	
 	public void addComment(Comment comment);
+	
+	public List<Comment> findComments(int blogid);
 }

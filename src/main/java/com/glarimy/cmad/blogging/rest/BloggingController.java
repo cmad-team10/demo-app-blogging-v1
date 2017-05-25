@@ -39,6 +39,16 @@ public class BloggingController {
 		return Response.ok().build();
     }
 	
+	@GET
+	@Path("/blog/{blogid}/comment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getComment(@PathParam("blogid") int blogid) {
+		List<Comment> comments = library.findComments(blogid);
+		GenericEntity<List<Comment>> commentList = new GenericEntity<List<Comment>>(comments) {};        
+		return Response.ok().entity(commentList).build();
+    }
+	
+	
 	@PUT
 	@Path("/blog")
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -64,5 +64,17 @@ public class JPABlogLibraryDAO  implements BlogLibraryDAO{
 		return blogs;
 	}
 	
+	
+	@Override
+	public List<Comment> readComments(int blogid) {
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		List<Comment> comments = em.createQuery("select b from Comment b where b.blogId = :blogId",Comment.class).setParameter("blogId", blogid).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		return comments;
+
+	}
+	
 
 }

@@ -1,11 +1,16 @@
 package com.glarimy.cmad.blogging.api;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
 @Entity
 public class Comment {
 	@Id
+	@Column(name="commentId")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int commentId;
 	private int blogId;
 	private String commentData;
