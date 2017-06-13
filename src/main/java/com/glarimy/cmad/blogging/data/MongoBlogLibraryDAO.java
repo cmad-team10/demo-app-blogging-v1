@@ -36,10 +36,6 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 	public void create(Blog blog) {
 		save(blog);
 	}
-	
-	@Override
-	public void createComment(Comment comment) {
-    }
 
 	@Override
 	public void update(Blog blog) {
@@ -53,16 +49,9 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 	}
 	
 	@Override
-	public List<Comment> readComments(int blogid) {
-       return null;
-	}
-
-	@Override
 	public Blog read(int blogid) {
 		// TODO Auto-generated method stub
 		 Blog blog = findOne("_id", blogid);
 	     return blog;
 	}
-
-
 }

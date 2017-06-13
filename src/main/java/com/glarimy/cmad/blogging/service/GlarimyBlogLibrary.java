@@ -10,27 +10,30 @@ import com.glarimy.cmad.blogging.api.BlogLibraryException;
 import com.glarimy.cmad.blogging.api.BlogNotFoundException;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
 import com.glarimy.cmad.blogging.data.MongoBlogLibraryDAO;
+import com.glarimy.cmad.blogging.data.CommentLibraryDAO;
+import com.glarimy.cmad.blogging.data.MongoCommentLibraryDAO;
 
 
 
 public class GlarimyBlogLibrary implements BlogLibrary{
-	private BlogLibraryDAO dao = new MongoBlogLibraryDAO();
+	private BlogLibraryDAO blogdao = new MongoBlogLibraryDAO();
+	private CommentLibraryDAO commentdao= new MongoCommentLibraryDAO();
 	@Override
 	public void add(Blog blog) throws BlogContentDataException, BlogLibraryException {
 		// TODO Auto-generated method stub
-		dao.create(blog);
+		blogdao.create(blog);
 	}
 	
     @Override
     public void addComment(Comment comment) {
     	// TODO Auto-generated method stub
-    	dao.createComment(comment);
+    	commentdao.createComment(comment);
     }
 
 	@Override
 	public Blog find(int blogid) throws BlogNotFoundException, BlogLibraryException {
 		// TODO Auto-generated method stub
-		Blog blog = dao.read(blogid);
+		Blog blog = blogdao.read(blogid);
 		if (blog == null)
 			throw new BlogNotFoundException();
 		return blog;
@@ -40,23 +43,23 @@ public class GlarimyBlogLibrary implements BlogLibrary{
 	@Override
 	public void update(Blog blog) throws BlogContentDataException,
 			BlogLibraryException {
-		Blog blogDB = dao.read(blog.getBlogId());
+		Blog blogDB = blogdao.read(blog.getBlogId());
 		if (blogDB == null)
 			throw new BlogNotFoundException();
-		dao.update(blog);
+		blogdao.update(blog);
 		
 	}
 
 	@Override
 	public List<Blog> findAll() throws BlogNotFoundException,
 			BlogLibraryException {
-		List<Blog> blogs = dao.readAll();		
+		List<Blog> blogs = blogdao.readAll();		
 		return blogs;
 	}
 
 	@Override
 	public List<Comment> findComments(int blogid) {
-		List<Comment> comments = dao.readComments(blogid);
+		List<Comment> comments = commentdao.readComments(blogid);
 		return comments;
 	}
 
