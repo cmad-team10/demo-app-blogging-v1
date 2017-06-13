@@ -9,12 +9,12 @@ import com.glarimy.cmad.blogging.api.BlogLibrary;
 import com.glarimy.cmad.blogging.api.BlogLibraryException;
 import com.glarimy.cmad.blogging.api.BlogNotFoundException;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
-import com.glarimy.cmad.blogging.data.JPABlogLibraryDAO;
+import com.glarimy.cmad.blogging.data.MongoBlogLibraryDAO;
 
 
 
 public class GlarimyBlogLibrary implements BlogLibrary{
-	private BlogLibraryDAO dao = new JPABlogLibraryDAO();
+	private BlogLibraryDAO dao = new MongoBlogLibraryDAO();
 	@Override
 	public void add(Blog blog) throws BlogContentDataException, BlogLibraryException {
 		// TODO Auto-generated method stub

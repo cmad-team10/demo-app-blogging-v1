@@ -7,16 +7,16 @@ import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
 
 public class BlogTest {
 	
-
+@Test
 	public void testBlogInsert(){
        //TODO
 		Blog testdata = new Blog();
-		testdata.setBlogId(3);
-		testdata.setTitile("First Blog");
-		//testdata.setDetails("Blog !!!!!!");
-		testdata.setUserId(12);
-		
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();
+		testdata.setBlogId(2);
+		testdata.setUserId(2);
+		testdata.setTitile("Second Mongo Blog");
+		testdata.setDetails("Hello Mongo!");
+		
 		test1.add(testdata);
 	}
 	public void testCommentInsert() {

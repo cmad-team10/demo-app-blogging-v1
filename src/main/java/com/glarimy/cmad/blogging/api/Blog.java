@@ -1,33 +1,26 @@
 package com.glarimy.cmad.blogging.api;
 
-import java.sql.Blob;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import com.glarimy.cmad.blogging.api.Comment;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.PrePersist;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.annotations.Validation;
 
 
 @Entity
-@XmlRootElement
 public class Blog {
+
 	@Id
-	@Column(name="blogId")
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Property("_id")
 	private int blogId;
 	private String titile;
-	@Lob
+
 	private String details;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Comment> blogs;
 	private int userId;
 	public Blog(int blogId, String titile, String details, int userId) {
@@ -70,7 +63,4 @@ public class Blog {
 		return "Blog [blogId=" + blogId + ", titile=" + titile + ", details="
 				+ details + ", userId=" + userId + "]";
 	}
-	
-	
-
 }

@@ -1,16 +1,14 @@
 package com.glarimy.cmad.blogging.api;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 @Entity
 public class Comment {
 	@Id
-	@Column(name="commentId")
-	@GeneratedValue(strategy = GenerationType.TABLE)
+    @Property("_id")
 	private int commentId;
 	private int blogId;
 	private String commentData;

@@ -1,24 +1,20 @@
 package com.glarimy.cmad.blogging.api;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.glarimy.cmad.blogging.api.Blog;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 @Entity
 public class User {
 	@Id
+	@Property("_id")
 	private int userId;
 	private String login;
 	private String password;
 	private String userName;
 	private String email;
 	private String details;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Blog> blogs;
 	
 	public User() {
