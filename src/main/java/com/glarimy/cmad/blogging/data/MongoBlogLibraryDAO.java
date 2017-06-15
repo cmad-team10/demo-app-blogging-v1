@@ -19,7 +19,7 @@ import org.mongodb.morphia.Morphia;
 
 
 public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLibraryDAO{
-	private static MongoClient mongoClient =  new MongoClient("localhost", 27017);;
+	private static MongoClient mongoClient =  new MongoClient("localhost", 28001);;
     private static Morphia morphia = new Morphia();
     private static Datastore dataStore = morphia.createDatastore(mongoClient, "cmad");
     
