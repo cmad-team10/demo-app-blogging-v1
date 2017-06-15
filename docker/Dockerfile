@@ -1,3 +1,3 @@
 FROM tomcat:latest
-ADD *.war /usr/local/tomcat/webapps/cmad.war
+ADD cmad-rest-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/cmad.war
 ADD setenv.sh /usr/local/tomcat/bin/setenv.sh
