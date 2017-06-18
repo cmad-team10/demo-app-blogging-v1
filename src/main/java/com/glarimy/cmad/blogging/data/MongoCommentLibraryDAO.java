@@ -8,12 +8,10 @@ import org.mongodb.morphia.dao.BasicDAO;
 
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.Comment;
+import com.glarimy.cmad.blogging.utils.MongoUtils;
 import com.mongodb.MongoClient;
 
 public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements CommentLibraryDAO {
-    private static MongoClient mongoClient =  new MongoClient("10.128.0.6", 28001);;
-    private static Morphia morphia = new Morphia();
-    private static Datastore dataStore = morphia.createDatastore(mongoClient, "cmad");
     
 	public MongoCommentLibraryDAO(Class<Comment> entityClass, Datastore ds) {
 		super(entityClass, ds);
@@ -21,7 +19,7 @@ public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements C
 	}
 	
 	public MongoCommentLibraryDAO() {
-        this(Comment.class, dataStore);
+        this(Comment.class, MongoUtils.getMongoDataStore());
 	}
 	
 
@@ -34,7 +32,6 @@ public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements C
 
 	@Override
 	public List<Comment> readComments(int blogId) {
-		// TODO Auto-generated method stub
 		List<Comment> comments = createQuery().filter("blog", blogId).asList();
         return comments;
 	}

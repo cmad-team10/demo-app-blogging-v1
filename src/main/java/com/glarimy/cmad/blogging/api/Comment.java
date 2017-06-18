@@ -4,15 +4,21 @@ package com.glarimy.cmad.blogging.api;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
+import org.bson.types.ObjectId;
+
 
 @Entity
 public class Comment {
 	@Id
     @Property("_id")
-	private int commentId;
+	private ObjectId commentId;
 	private int blogId;
 	private String commentData;
-	public Comment(int commentId, int blogId, String commentData) {
+	@Reference(idOnly = true)
+	private Blog blog;
+  
+	public Comment(ObjectId commentId, int blogId, String commentData) {
 		super();
 		this.commentId = commentId;
 		this.blogId = blogId;
@@ -22,10 +28,10 @@ public class Comment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getCommentId() {
+	public ObjectId getCommentId() {
 		return commentId;
 	}
-	public void setCommentId(int commentId) {
+	public void setCommentId(ObjectId commentId) {
 		this.commentId = commentId;
 	}
 	public int getBlogId() {

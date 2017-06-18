@@ -14,14 +14,14 @@ import org.mongodb.morphia.query.FindOptions;
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
+import com.glarimy.cmad.blogging.utils.MongoUtils;
+
 import org.mongodb.morphia.Morphia;
 
 
 
 public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLibraryDAO{
-	private static MongoClient mongoClient =  new MongoClient("10.128.0.6", 28001);;
-    private static Morphia morphia = new Morphia();
-    private static Datastore dataStore = morphia.createDatastore(mongoClient, "cmad");
+	
     
 	public MongoBlogLibraryDAO(Class<Blog> entityClass, Datastore ds) {
 		super(entityClass, ds);
@@ -29,7 +29,7 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 	}
 
 	public MongoBlogLibraryDAO() {
-	        this(Blog.class, dataStore);
+	        this(Blog.class, MongoUtils.getMongoDataStore());
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 	}
 	
 	@Override
-	public Blog read(int blogid) {
+	public Blog read(ObjectId blogid) {
 		// TODO Auto-generated method stub
 		 Blog blog = findOne("_id", blogid);
 	     return blog;

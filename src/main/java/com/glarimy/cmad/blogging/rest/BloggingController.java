@@ -13,6 +13,8 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.bson.types.ObjectId;
+
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
@@ -60,7 +62,7 @@ public class BloggingController {
 	@GET
 	@Path("/blog/{blogid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response find(@PathParam("blogid") int blogid) {
+	public Response find(@PathParam("blogid") ObjectId blogid) {
 		Blog blog = library.find(blogid);
 		return Response.ok().entity(blog).build();
 	}

@@ -2,6 +2,8 @@ package com.glarimy.cmad.blogging.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogContentDataException;
@@ -31,7 +33,7 @@ public class GlarimyBlogLibrary implements BlogLibrary{
     }
 
 	@Override
-	public Blog find(int blogid) throws BlogNotFoundException, BlogLibraryException {
+	public Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException {
 		// TODO Auto-generated method stub
 		Blog blog = blogdao.read(blogid);
 		if (blog == null)

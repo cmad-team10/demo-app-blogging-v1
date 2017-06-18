@@ -1,6 +1,8 @@
 package com.glarimy.cmad.blogging.api;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.bson.types.ObjectId;
@@ -10,20 +12,22 @@ import org.mongodb.morphia.annotations.PrePersist;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Validation;
+import org.bson.types.ObjectId;
 
 
 @Entity
+@Validation("{ title : { $type : string },"
+        + "blogText : {$type : string }")
 public class Blog {
-
 	@Id
 	@Property("_id")
-	private int blogId;
+	private ObjectId blogId;
 	private String titile;
 
 	private String details;
 	private List<Comment> blogs;
 	private int userId;
-	public Blog(int blogId, String titile, String details, int userId) {
+	public Blog(ObjectId blogId, String titile, String details, int userId) {
 		super();
 		this.blogId = blogId;
 		this.titile = titile;
@@ -34,10 +38,10 @@ public class Blog {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getBlogId() {
+	public ObjectId getBlogId() {
 		return blogId;
 	}
-	public void setBlogId(int blogId) {
+	public void setBlogId(ObjectId blogId) {
 		this.blogId = blogId;
 	}
 	public String getTitile() {

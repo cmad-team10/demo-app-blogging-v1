@@ -6,12 +6,10 @@ import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
 
 
 public class BlogTest {
-	
 	public void testBlogInsert(){
        //TODO
 		Blog testdata = new Blog();
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();
-		testdata.setBlogId(2);
 		testdata.setUserId(2);
 		testdata.setTitile("Second Mongo Blog");
 		testdata.setDetails("Hello Mongo!");
@@ -20,8 +18,6 @@ public class BlogTest {
 	}
 	public void testCommentInsert() {
 		Comment testdata = new Comment();
-		testdata.setCommentId(20);
-		testdata.setBlogId(1);
 		testdata.setCommentData("Comment");
 		GlarimyBlogLibrary test1 = new GlarimyBlogLibrary();
 		test1.addComment(testdata);
