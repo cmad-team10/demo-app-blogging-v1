@@ -16,6 +16,8 @@ import javax.ws.rs.core.Response;
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
+import com.glarimy.cmad.blogging.jwt.JWTTokenNeeded;
+import com.glarimy.cmad.blogging.jwt.JwtTokenExpected;
 import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
 
 @Path("/blogging")

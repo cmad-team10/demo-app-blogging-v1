@@ -11,7 +11,8 @@ import com.glarimy.cmad.blogging.api.Comment;
 import com.mongodb.MongoClient;
 
 public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements CommentLibraryDAO {
-    private static MongoClient mongoClient =  new MongoClient("10.140.0.2", 28001);;
+    //private static MongoClient mongoClient =  new MongoClient("10.140.0.2", 28001);
+    private static MongoClient mongoClient =  new MongoClient("localhost", 28001);
     private static Morphia morphia = new Morphia();
     private static Datastore dataStore = morphia.createDatastore(mongoClient, "cmad");
     

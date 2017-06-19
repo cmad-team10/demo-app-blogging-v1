@@ -23,7 +23,10 @@ $(document).ready(function() {
 			dataType : 'json',
 			contentType: "application/json; charset=utf-8",
 			success : function(data) {
-				("#list-blog-icon a").trigger('click');
+				//("#list-blog-icon a").trigger('click');
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown){
+				alert("unauth");
 			},
 			data : JSON.stringify(blog)
 		});	
