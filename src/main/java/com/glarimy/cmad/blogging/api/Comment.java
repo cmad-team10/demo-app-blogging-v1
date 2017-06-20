@@ -5,6 +5,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
+
+
 import org.bson.types.ObjectId;
 
 
@@ -13,12 +15,12 @@ public class Comment {
 	@Id
     @Property("_id")
 	private ObjectId commentId;
-	private int blogId;
+	private ObjectId blogId;
 	private String commentData;
 	@Reference(idOnly = true)
 	private Blog blog;
   
-	public Comment(ObjectId commentId, int blogId, String commentData) {
+	public Comment(ObjectId commentId, ObjectId blogId, String commentData) {
 		super();
 		this.commentId = commentId;
 		this.blogId = blogId;
@@ -34,11 +36,11 @@ public class Comment {
 	public void setCommentId(ObjectId commentId) {
 		this.commentId = commentId;
 	}
-	public int getBlogId() {
+	public ObjectId getBlogId() {
 		return blogId;
 	}
-	public void setBlogId(int blogId) {
-		this.blogId = blogId;
+	public void setBlogId(ObjectId string) {
+		this.blogId = string;
 	}
 	public String getCommentData() {
 		return commentData;
@@ -46,12 +48,18 @@ public class Comment {
 	public void setCommentData(String commentData) {
 		this.commentData = commentData;
 	}
+	
+	 public Blog getBlog() {
+	        return blog;
+	 }
+
+	 public Comment setBlog(Blog blog) {
+	        this.blog = blog;
+	        return this;
+	 }
 	@Override
 	public String toString() {
 		return "Comment [commentId=" + commentId + ", blogId=" + blogId
 				+ ", commentData=" + commentData + "]";
 	}
-	
-	
-
 }

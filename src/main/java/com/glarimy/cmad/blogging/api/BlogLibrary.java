@@ -15,10 +15,6 @@ public interface BlogLibrary {
 	public void update(Blog blog) throws BlogContentDataException,BlogLibraryException;
 	
 	public List<Blog> findAll() throws BlogNotFoundException, BlogLibraryException;
-	
-	public void addComment(Comment comment);
-	
-	public List<Comment> findComments(int blogid);
 
 	Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException;
 }

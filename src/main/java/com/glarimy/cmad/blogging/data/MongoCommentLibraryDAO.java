@@ -2,6 +2,7 @@ package com.glarimy.cmad.blogging.data;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.dao.BasicDAO;
@@ -31,7 +32,7 @@ public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements C
 	}
 
 	@Override
-	public List<Comment> readComments(int blogId) {
+	public List<Comment> readComments(ObjectId blogId) {
 		List<Comment> comments = createQuery().filter("blog", blogId).asList();
         return comments;
 	}

@@ -16,13 +16,13 @@ import javax.ws.rs.core.Response;
 import org.bson.types.ObjectId;
 
 import com.glarimy.cmad.blogging.api.Blog;
-import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
-import com.glarimy.cmad.blogging.service.GlarimyBlogLibrary;
+import com.glarimy.cmad.blogging.service.BlogService;
+
 
 @Path("/blogging")
 public class BloggingController {
-	private static BlogLibrary library = new GlarimyBlogLibrary();
+	private static BlogLibrary library = new BlogService();
 
 	@POST
 	@Path("/blog")
@@ -31,26 +31,6 @@ public class BloggingController {
 		library.add(blog);
 		return Response.ok().build();
 	}
-	
-	@POST
-	@Path("/blog/{blogid}/comment")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addComment(Comment comment,@PathParam("blogid") int blogid) {
-		comment.setBlogId(blogid);
-		library.addComment(comment);
-		return Response.ok().build();
-    }
-	
-	@GET
-	@Path("/blog/{blogid}/comment")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getComment(@PathParam("blogid") int blogid) {
-		List<Comment> comments = library.findComments(blogid);
-		GenericEntity<List<Comment>> commentList = new GenericEntity<List<Comment>>(comments) {};        
-		return Response.ok().entity(commentList).build();
-    }
-	
-	
 	@PUT
 	@Path("/blog")
 	@Consumes(MediaType.APPLICATION_JSON)

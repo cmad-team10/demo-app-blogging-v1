@@ -1,6 +1,7 @@
 package com.glarimy.cmad.blogging.api;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
@@ -9,7 +10,7 @@ import org.mongodb.morphia.annotations.Property;
 public class User {
 	@Id
 	@Property("_id")
-	private int userId;
+	private ObjectId userId;
 	private String login;
 	private String password;
 	private String userName;
@@ -20,12 +21,10 @@ public class User {
 	public User() {
 		super();
 	}
-	
-	
-	public int getUserId() {
+	public ObjectId getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(ObjectId userId) {
 		this.userId = userId;
 	}
 	public String getPassword() {

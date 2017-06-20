@@ -5,33 +5,21 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 import com.glarimy.cmad.blogging.api.Blog;
-import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.BlogContentDataException;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
 import com.glarimy.cmad.blogging.api.BlogLibraryException;
 import com.glarimy.cmad.blogging.api.BlogNotFoundException;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
 import com.glarimy.cmad.blogging.data.MongoBlogLibraryDAO;
-import com.glarimy.cmad.blogging.data.CommentLibraryDAO;
-import com.glarimy.cmad.blogging.data.MongoCommentLibraryDAO;
 
-
-
-public class GlarimyBlogLibrary implements BlogLibrary{
+public class BlogService implements BlogLibrary{
 	private BlogLibraryDAO blogdao = new MongoBlogLibraryDAO();
-	private CommentLibraryDAO commentdao= new MongoCommentLibraryDAO();
 	@Override
 	public void add(Blog blog) throws BlogContentDataException, BlogLibraryException {
 		// TODO Auto-generated method stub
 		blogdao.create(blog);
 	}
 	
-    @Override
-    public void addComment(Comment comment) {
-    	// TODO Auto-generated method stub
-    	commentdao.createComment(comment);
-    }
-
 	@Override
 	public Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException {
 		// TODO Auto-generated method stub
@@ -57,12 +45,6 @@ public class GlarimyBlogLibrary implements BlogLibrary{
 			BlogLibraryException {
 		List<Blog> blogs = blogdao.readAll();		
 		return blogs;
-	}
-
-	@Override
-	public List<Comment> findComments(int blogid) {
-		List<Comment> comments = commentdao.readComments(blogid);
-		return comments;
 	}
 
 }

@@ -22,15 +22,15 @@ public class Blog {
 	@Id
 	@Property("_id")
 	private ObjectId blogId;
-	private String titile;
+	private String title;
 
 	private String details;
 	private List<Comment> blogs;
 	private int userId;
-	public Blog(ObjectId blogId, String titile, String details, int userId) {
+	public Blog(ObjectId blogId, String title, String details, int userId) {
 		super();
 		this.blogId = blogId;
-		this.titile = titile;
+		this.title = title;
 		this.details = details;
 		this.userId = userId;
 	}
@@ -44,11 +44,11 @@ public class Blog {
 	public void setBlogId(ObjectId blogId) {
 		this.blogId = blogId;
 	}
-	public String getTitile() {
-		return titile;
+	public String getTitle() {
+		return title;
 	}
-	public void setTitile(String titile) {
-		this.titile = titile;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getDetails() {
 		return details;
@@ -64,7 +64,7 @@ public class Blog {
 	}
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", titile=" + titile + ", details="
+		return "Blog [blogId=" + blogId + ", title=" + title + ", details="
 				+ details + ", userId=" + userId + "]";
 	}
 }

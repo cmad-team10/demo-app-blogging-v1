@@ -13,7 +13,7 @@ $(document).ready(function() {
 		var title = $("#create-blog-title").val();
 		var content = $("#create-blog-content").val();
 		var blog = {
-			"titile" : title,
+			"title" : title,
 			"details" : content
 		}
 		console.log('calling:'+blog);
@@ -52,7 +52,7 @@ $(document).ready(function() {
 			contentType: "application/json; charset=utf-8",
 			success : function(data) {
 				console.log(data);
-				$('#view-blog-title').html(data.titile);
+				$('#view-blog-title').html(data.title);
 				$('#view-blog-content').html(data.details.replace(/\n/g, '<br>'));
 			}
 		});
@@ -102,13 +102,13 @@ $(document).ready(function() {
 			success : function(data) {
 				//var returnedData = JSON.parse(data);
 				console.log(data);
-				console.log('Data received;'+data[0].titile);
+				console.log('Data received;'+data[0].title);
 				//console.log('Data returnedData;'+returnedData);
 				
 				console.log(JSON.stringify(data));
 				   $.each(data, function(idx, blog){
-				     //$("#nav").html('<a href="' + blog.blogId + '">' + topic.titile + "</a>");
-				     $("#list-blog-list").append( '<li class="list-group-item list-blog" id="'+blog.blogId+'"><a>'+blog.titile+'</a></li>');
+				     //$("#nav").html('<a href="' + blog.blogId + '">' + topic.title + "</a>");
+				     $("#list-blog-list").append( '<li class="list-group-item list-blog" id="'+blog.blogId+'"><a>'+blog.title+'</a></li>');
 				   });
 			}
 		});
