@@ -5,7 +5,6 @@ import com.glarimy.cmad.blogging.service.UserService;;
 
 
 public class UserTest {
-	@Test
 	public void testUserInsert(){
 		User testuserdata = new User();
 		UserService testuserservice = new UserService();
