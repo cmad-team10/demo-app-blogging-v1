@@ -10,16 +10,16 @@ public class CommentTest {
 @Test
 	public void testCommentInsert() {
 	Blog testblogdata = new Blog();
-	BlogService test1 = new BlogService();
+	BlogService testblogservice = new BlogService();
 	testblogdata.setUserId(2);
 	testblogdata.setTitle(" Test Blog");
 	testblogdata.setDetails("Hello Mongo!");
-	test1.add(testblogdata);
+	testblogservice.add(testblogdata);
 	Comment testcommentdata = new Comment();
 	testcommentdata.setCommentData("Test Comment");
-	CommentService test2 = new CommentService();
+	CommentService testcommentservice = new CommentService();
 	testcommentdata.setBlog(testblogdata);
-	test2.addComment(testcommentdata);
+	testcommentservice.addComment(testcommentdata);
 	}
 	
 }

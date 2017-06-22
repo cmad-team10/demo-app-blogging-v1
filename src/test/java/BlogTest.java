@@ -15,8 +15,6 @@ public class BlogTest {
 		testdata.setUserId(2);
 		testdata.setTitle(" Mongo Blog");
 		testdata.setDetails("Hello Mongo!");
-		
 		test1.add(testdata);
-	}
-	
+	}	
 }
