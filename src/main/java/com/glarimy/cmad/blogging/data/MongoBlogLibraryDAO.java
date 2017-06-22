@@ -62,7 +62,8 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 	@Override
 	public List<Blog> readByUserId(String userId) {
 		// TODO Auto-generated method stub
-		List<Blog> blogs = createQuery().filter("userId", userId).order("-lastUpdatedOn").asList();
+		List<Blog> blogs = createQuery().order("-lastUpdatedOn").asList();
+		System.out.println(blogs);
         return blogs;
 	}
 }

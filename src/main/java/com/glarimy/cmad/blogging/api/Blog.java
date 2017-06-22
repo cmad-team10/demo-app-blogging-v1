@@ -30,10 +30,10 @@ public class Blog {
 
 	private String details;
 	private List<Comment> blogs;
-	private int userId;
+	private String userId;
     private Date lastUpdatedOn;
 
-	public Blog(ObjectId blogId, String title, String details, int userId) {
+	public Blog(ObjectId blogId, String title, String details, String userId) {
 		super();
 		this.blogId = blogId;
 		this.title = title;
@@ -75,10 +75,10 @@ public class Blog {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	@Override

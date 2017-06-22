@@ -11,7 +11,7 @@ public class CommentTest {
 	public void testCommentInsert() {
 	Blog testblogdata = new Blog();
 	BlogService testblogservice = new BlogService();
-	testblogdata.setUserId(2);
+	testblogdata.setUserId("kavitakr");
 	testblogdata.setTitle(" Test Blog");
 	testblogdata.setDetails("Hello Mongo!");
 	testblogservice.add(testblogdata);

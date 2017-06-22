@@ -76,6 +76,7 @@ public class BloggingController {
 	        GenericEntity<List<Blog>> entities;
 	        String userId = info.getPathParameters().getFirst("userId");
 	        blogs = BlogLibrary.readByUserId(userId);
+	        
 	        entities = new GenericEntity<List<Blog>>(blogs) {
 	        };
 	        return Response.ok().entity(entities).build();

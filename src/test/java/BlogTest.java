@@ -12,7 +12,7 @@ public class BlogTest {
        //TODO
 		Blog testdata = new Blog();
 		BlogService test1 = new BlogService();
-		testdata.setUserId(2);
+		testdata.setUserId("kavitakr");
 		testdata.setTitle(" Mongo Blog");
 		testdata.setDetails("Hello Mongo!");
 		test1.add(testdata);
