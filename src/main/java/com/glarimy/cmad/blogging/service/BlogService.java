@@ -58,7 +58,6 @@ public class BlogService implements BlogLibrary{
 		return blogs;
 	}
 
-	@Override
 	public List<Blog> readByUserId(String userId) throws DataNotFoundException, EntityException {
 		// TODO Auto-generated method stub
 		 List<Blog> blogs = new ArrayList<Blog>();

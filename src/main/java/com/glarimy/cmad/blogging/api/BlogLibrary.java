@@ -21,6 +21,9 @@ public interface BlogLibrary {
 
 	public Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException;
 	
-    public List<Blog> readByUserId(String userId) throws DataNotFoundException, EntityException;
+    public static List<Blog> readByUserId(String userId) throws DataNotFoundException, EntityException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

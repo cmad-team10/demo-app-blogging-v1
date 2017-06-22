@@ -15,7 +15,7 @@ import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.BlogNotFoundException;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
-import com.glarimy.cmad.blogging.utils.MongoUtils;
+import com.glarimy.cmad.blogging.utils.Mongo.MongoUtils;
 
 import org.mongodb.morphia.Morphia;
 

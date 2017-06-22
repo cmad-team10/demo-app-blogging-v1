@@ -6,7 +6,7 @@ import org.mongodb.morphia.dao.BasicDAO;
 
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.api.User;
-import com.glarimy.cmad.blogging.utils.MongoUtils;
+import com.glarimy.cmad.blogging.utils.Mongo.MongoUtils;
 
 
 

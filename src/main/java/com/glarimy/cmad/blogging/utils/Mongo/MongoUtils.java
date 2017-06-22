@@ -1,4 +1,4 @@
-package com.glarimy.cmad.blogging.utils;
+package com.glarimy.cmad.blogging.utils.Mongo;
 
 
 import org.mongodb.morphia.Datastore;
