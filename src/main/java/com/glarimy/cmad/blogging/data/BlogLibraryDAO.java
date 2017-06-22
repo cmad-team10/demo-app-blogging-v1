@@ -10,4 +10,5 @@ public interface BlogLibraryDAO {
 	public Blog read(ObjectId blogid);
 	public void update(Blog blog);
 	public List<Blog> readAll();
+	public List<Blog> readByUserId(String userId);
 }

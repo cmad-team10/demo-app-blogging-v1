@@ -6,6 +6,9 @@ import org.bson.types.ObjectId;
 
 import com.glarimy.cmad.blogging.api.Blog;
 import com.glarimy.cmad.blogging.api.BlogNotFoundException;
+import com.glarimy.cmad.blogging.api.DataNotFoundException;
+
+
 import com.glarimy.cmad.blogging.api.BlogContentDataException;
 import com.glarimy.cmad.blogging.api.BlogLibraryException;
 
@@ -16,5 +19,8 @@ public interface BlogLibrary {
 	
 	public List<Blog> findAll() throws BlogNotFoundException, BlogLibraryException;
 
-	Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException;
+	public Blog find(ObjectId blogid) throws BlogNotFoundException, BlogLibraryException;
+	
+    public List<Blog> readByUserId(String userId) throws DataNotFoundException, EntityException;
+
 }

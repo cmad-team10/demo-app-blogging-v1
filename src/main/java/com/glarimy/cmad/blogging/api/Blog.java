@@ -1,7 +1,9 @@
 package com.glarimy.cmad.blogging.api;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Date;
+
+import org.bson.types.ObjectId;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -12,6 +14,8 @@ import org.mongodb.morphia.annotations.PrePersist;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Validation;
+
+
 import org.bson.types.ObjectId;
 
 
@@ -27,6 +31,8 @@ public class Blog {
 	private String details;
 	private List<Comment> blogs;
 	private int userId;
+    private Date lastUpdatedOn;
+
 	public Blog(ObjectId blogId, String title, String details, int userId) {
 		super();
 		this.blogId = blogId;
@@ -34,6 +40,7 @@ public class Blog {
 		this.details = details;
 		this.userId = userId;
 	}
+	
 	public Blog() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,8 +51,20 @@ public class Blog {
 	public void setBlogId(ObjectId blogId) {
 		this.blogId = blogId;
 	}
+	public Date getLastUpdatedOn() {
+	     return lastUpdatedOn;
+	 }
+
+	 public Blog setLastUpdatedOn(Date lastUpdatedOn) {
+	      this.lastUpdatedOn = lastUpdatedOn;
+	      return this;
+	 }
 	public String getTitle() {
 		return title;
+	}
+	@PrePersist
+	public void prePersist() {
+	     this.lastUpdatedOn = new Date();
 	}
 	public void setTitle(String title) {
 		this.title = title;

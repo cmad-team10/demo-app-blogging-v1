@@ -6,73 +6,78 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
+
 @Entity
-public class User {
+public class User {	
 	@Id
-	@Property("_id")
-	private ObjectId userId;
-	private String login;
-	private String password;
-	private String userName;
-	private String email;
-	private String details;
-	private List<Blog> blogs;
-	
-	public User() {
-		super();
-	}
-	public ObjectId getUserId() {
-		return userId;
-	}
-	public void setUserId(ObjectId userId) {
-		this.userId = userId;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getDetails() {
-		return details;
-	}
-	public void setDetails(String details) {
-		this.details = details;
-	}
+    @Property("_id")
+    private ObjectId _id;
 
+    private String userId;
 
-	public String getLogin() {
-		return login;
-	}
+    private String password;
 
+    private String firstName;
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    private String lastName;
 
+    private String emailId;
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", login=" + login + ", password="
-				+ password + ", userName=" + userName + ", email=" + email
-				+ ", details=" + details + "]";
-	}
-	
-	
-	
-	
-	
+    public User() {
+        super();
+    }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public User setUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public User setId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public String getFullName() {
+        return (lastName.isEmpty()) ? firstName : firstName + " " + lastName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public User setEmailId(String emailId) {
+        this.emailId = emailId;
+        return this;
+    }
 }

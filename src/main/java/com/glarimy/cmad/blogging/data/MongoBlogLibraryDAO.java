@@ -12,6 +12,7 @@ import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.FindOptions;
 
 import com.glarimy.cmad.blogging.api.Blog;
+import com.glarimy.cmad.blogging.api.BlogNotFoundException;
 import com.glarimy.cmad.blogging.api.Comment;
 import com.glarimy.cmad.blogging.data.BlogLibraryDAO;
 import com.glarimy.cmad.blogging.utils.MongoUtils;
@@ -39,7 +40,10 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 
 	@Override
 	public void update(Blog blog) {
-			
+	    Blog foundBlog = read(blog.getBlogId());
+	    if (foundBlog == null)
+	       throw new BlogNotFoundException();
+	    save(blog);	
 	}
 
 	@Override
@@ -53,5 +57,12 @@ public class MongoBlogLibraryDAO extends BasicDAO<Blog, Long> implements BlogLib
 		// TODO Auto-generated method stub
 		 Blog blog = findOne("_id", blogid);
 	     return blog;
+	}
+
+	@Override
+	public List<Blog> readByUserId(String userId) {
+		// TODO Auto-generated method stub
+		List<Blog> blogs = createQuery().filter("userId", userId).order("-lastUpdatedOn").asList();
+        return blogs;
 	}
 }

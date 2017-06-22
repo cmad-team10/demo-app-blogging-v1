@@ -9,11 +9,11 @@ import com.glarimy.cmad.blogging.api.User;
 import com.glarimy.cmad.blogging.utils.MongoUtils;
 
 
+
 public class MongoUserLibraryDAO extends BasicDAO<User, Long> implements UserLibraryDAO  {
 
 	public MongoUserLibraryDAO(Class<User> entityClass, Datastore ds) {
 		super(entityClass, ds);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public MongoUserLibraryDAO(){
@@ -22,44 +22,44 @@ public class MongoUserLibraryDAO extends BasicDAO<User, Long> implements UserLib
 
 	@Override
 	public void create(User user) {
-		// TODO Auto-generated method stub
-		
+        save(user);
 	}
 
 	@Override
 	public User read(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		 User user = createQuery().field("userId").contains(userId).get();
+	     return user;
 	}
 
 	@Override
 	public User readByUserIdAndPassword(String userId, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	    User user = createQuery().field("userId").contains(userId).field("password").contains(password).get();
+        return user;
 	}
 
 	@Override
 	public List<User> readAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	     List<User> userList = createQuery().asList();
+	     return userList;
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-		
+	     User foundUser = read(user.getUserId());
+	        if (foundUser == null)
+	            throw new IllegalArgumentException();
+	        save(user);
 	}
 
 	@Override
 	public void delete(String userId) {
-		// TODO Auto-generated method stub
-		
+	     User user = read(userId);
+	        delete(user);
 	}
 
 	@Override
 	public Long getCount() {
-		// TODO Auto-generated method stub
-		return null;
+        return count();
 	}
 
 }

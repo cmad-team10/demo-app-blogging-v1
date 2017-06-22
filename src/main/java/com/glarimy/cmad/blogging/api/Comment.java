@@ -1,5 +1,6 @@
 package com.glarimy.cmad.blogging.api;
 
+import java.util.Date;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -17,6 +18,8 @@ public class Comment {
 	private ObjectId commentId;
 	private ObjectId blogId;
 	private String commentData;
+    private Date lastUpdatedOn;
+
 	@Reference(idOnly = true)
 	private Blog blog;
   
@@ -48,7 +51,14 @@ public class Comment {
 	public void setCommentData(String commentData) {
 		this.commentData = commentData;
 	}
-	
+	public Date getLastUpdatedOn() {
+	     return lastUpdatedOn;
+	}
+
+	public Comment setLastUpdatedOn(Date lastUpdatedOn) {
+	        this.lastUpdatedOn = lastUpdatedOn;
+	        return this;
+	 }
 	 public Blog getBlog() {
 	        return blog;
 	 }
