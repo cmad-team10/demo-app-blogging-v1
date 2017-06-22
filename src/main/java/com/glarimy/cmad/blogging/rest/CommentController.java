@@ -25,8 +25,6 @@ import com.glarimy.cmad.blogging.service.BlogService;
 import com.glarimy.cmad.blogging.service.CommentService;
 
 
-
-
 @Path("/comments")
 @Consumes(MediaType.APPLICATION_JSON)
 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
