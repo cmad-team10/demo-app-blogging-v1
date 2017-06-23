@@ -51,8 +51,9 @@ public class BloggingController {
 	@GET
 	@Path("/blog/{blogid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response find(@PathParam("blogid") ObjectId blogid) {
-		Blog blog = library.find(blogid);
+	public Response find(@PathParam("blogid") String blogidString) {
+		ObjectId blogId = new ObjectId(blogidString);
+		Blog blog = library.find(blogId);
 		return Response.ok().entity(blog).build();
 	}
 	
@@ -69,6 +70,23 @@ public class BloggingController {
 	        };
 	        return Response.ok().entity(entities).build();
 	 }
+	  
+	  @POST
+		@Path("/blog/{blogid}/comment")
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response addComment(Comment comment,@PathParam("blogid") String blogid) {
+		    Blog blog = new Blog();
+		    blog.setBlogId(new ObjectId(blogid));
+			comment.setBlog(blog);
+			try {
+				commentLibrary.update(comment);
+			} catch (DataNotFoundException | EntityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return Response.ok().build();
+	    }
+	  
 	   @GET
 	    @Path("/users/{userId}")
 	    public Response readByUserId(@Context UriInfo info) throws DataNotFoundException, EntityException {
@@ -87,6 +105,10 @@ public class BloggingController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAll() {
 		List<Blog> blogs = library.findAll();
+		for(Blog blog: blogs){
+			System.out.println("aaa:"+blog.getBlogId().toString());
+			blog.setBlogIdString(blog.getBlogId().toString());
+		}
 		GenericEntity<List<Blog>> blogList = new GenericEntity<List<Blog>>(blogs) {};        
 		return Response.ok().entity(blogList).build();
 	}

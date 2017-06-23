@@ -26,6 +26,14 @@ public class Blog {
 	@Id
 	@Property("_id")
 	private ObjectId blogId;
+	private String blogIdString;
+	public String getBlogIdString() {
+		return blogIdString;
+	}
+
+	public void setBlogIdString(String blogIdString) {
+		this.blogIdString = blogIdString;
+	}
 	private String title;
 
 	private String details;

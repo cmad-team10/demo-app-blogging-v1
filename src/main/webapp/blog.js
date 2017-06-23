@@ -108,7 +108,7 @@ $(document).ready(function() {
 				console.log(JSON.stringify(data));
 				   $.each(data, function(idx, blog){
 				     //$("#nav").html('<a href="' + blog.blogId + '">' + topic.title + "</a>");
-				     $("#list-blog-list").append( '<li class="list-group-item list-blog" id="'+blog.blogId+'"><a>'+blog.title+'</a></li>');
+				     $("#list-blog-list").append( '<li class="list-group-item list-blog" id="'+blog.blogIdString+'"><a>'+blog.title+'</a></li>');
 				   });
 			}
 		});
