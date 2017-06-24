@@ -5,11 +5,11 @@ $(document).ready(function() {
 		console.log("create blog");
 	    var token =	localStorage.getItem('token');
 	    if(token == undefined || token == ""){
-	    	alert("Not LogedIn");
+	    	showDiv("login-signup");
+	    }else{
+	    	showDiv("create-blog");
 	    }
-		$("#list-blog").hide();
-		$("#view-blog").hide();
-		$("#create-blog").show();		
+	    
 	});
 	
 	$("#profile-icon").click(function(e) {
@@ -39,9 +39,7 @@ $(document).ready(function() {
 	})
 	
 	$("#list-blog-icon").click(function(e) {
-		$("#create-blog").hide();
-		$("#view-blog").hide();
-		$("#list-blog").show();
+		showDiv("list-blog");
 		viewList();
 	});
 	
@@ -49,9 +47,7 @@ $(document).ready(function() {
 	$("#list-blog-list").on("click", ".list-blog", function(event){
 		$("#blog-comment-list").empty();
 		console.log("id:"+this.id);
-		$("#create-blog").hide();
-		$("#list-blog").hide();
-		$("#view-blog").show();
+		showDiv("view-blog");
 		$("#create-comment-blogId").val(this.id);
 		$.ajax({
 			url : 'rest/blogging/blog/'+this.id,
@@ -126,6 +122,7 @@ $(document).ready(function() {
 	
 	function viewList(){
 		console.log("calling viewList");
+		showDiv("list-blog");
 		$("#list-blog-list").empty();
 		$.ajax({
 			url : 'rest/blogging/blog',
@@ -151,11 +148,14 @@ $(document).ready(function() {
 	$("#logout-icon").click(function(){
 		logOut();
 		setLoginView(false);
+		showDiv("list-blog");
 	});
 	
 	$("#login-icon").click(function(){
 		performLogin();
+		showDiv("login-signup");
 		setLoginView(true);
+
 	});
 	
 	function logOut(){
@@ -181,6 +181,14 @@ $(document).ready(function() {
 		setLoginView(true);
 	}else{
 		setLoginView(false);
+	}
+	
+	function showDiv(id){
+		$("#list-blog").hide();
+		$("#view-blog").hide();
+		$("#login-signup").hide();
+		$("#create-blog").hide();
+		$("#"+id).show();
 	}
 
 });

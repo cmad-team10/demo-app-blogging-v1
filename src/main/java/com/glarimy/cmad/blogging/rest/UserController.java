@@ -16,6 +16,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -44,8 +45,9 @@ public class UserController {
     public Response authenticateUser(User user) {
         try {
             logger.info("#### login/password : " + user.getUserId() + "/" + user.getPassword());
+            
             // Authenticate the user using the credentials provided
-           // users.authenticate(user.getUserId(), user.getPassword());
+           // authenticate(user.getUserId(), user.getPassword());
 
             // Issue a token for the user
             String token = issueToken(user.getUserId());
@@ -76,11 +78,29 @@ public class UserController {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
     
+    @POST
+    @Path("/user")
+    public Response saveUser(User user){
+    	//TODO Kavitha save the user. Password need to be encrypted. But to start with store it in plain text. Later we can encrypt
+    	
+    	//get the token and send 
+    	String token = issueToken(user.getUserId());
+        user.setToken(token);
+    	return Response.ok().entity(user).build();
+    }
+    
     @GET
-    @Path("/isUserLogedIn")
-    @JWTTokenNeeded
-    public Response isUserLogedIn(){
-    	return Response.ok().build();
+    @Path("/user/{userId}")
+    public Response getUser(@PathParam("userId") String userId){
+    	//TODO Kavitha get the user deatils
+    	User user = null;
+    	
+    	return Response.ok().entity(user).build();
+    }
+    
+    private boolean authenticate(String userId, String password){
+    	//TODO Kavitha, check if userId and password is present in DB, if yes then return true else return false.
+    	return true;
     }
 
 }

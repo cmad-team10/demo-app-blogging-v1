@@ -2,3 +2,8 @@
 #create-blog, #view-blog{
 	display: none;
 }
+
+.page-header-style{
+	font-size: 25px;
+	padding-left:7px;
+}
