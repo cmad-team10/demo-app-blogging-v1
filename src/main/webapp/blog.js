@@ -8,6 +8,11 @@ $(document).ready(function() {
 		$("#create-blog").show();		
 	});
 	
+	$("#profile-icon").click(function(e) {
+		console.log("profile");
+		performLogin();		
+	});
+	
 	$("#create-blog-submit").click(function(e){
 		console.log('inside create-blog-submit:'+blog);
 		var title = $("#create-blog-title").val();
@@ -91,6 +96,30 @@ $(document).ready(function() {
 		});	
 	});
 	
+	function performLogin(){
+		var login = {
+				"userId" : "harsha",
+				"password" : "pwd"
+			}
+		$.ajax({
+			url : 'rest/users/login',
+			type : 'post',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(response) {
+				console.dir("login response:"+response);
+				localStorage.setItem("userName", response.firstName+" "+response.lastName);
+				localStorage.setItem("token", response.token);
+			},
+			error : function(xhr, ajaxOptions, thrownError){
+				console.log("login not successfull xhr :"+xhr.responseText);
+				console.log("login not successfull ajaxOptions:"+ajaxOptions);
+				console.log("login not successfull thrownError:"+thrownError);
+			},
+			data : JSON.stringify(login)
+		});
+	}
+	
 	function viewList(){
 		console.log("calling viewList");
 		$("#list-blog-list").empty();
@@ -99,6 +128,7 @@ $(document).ready(function() {
 			type : 'get',
 			dataType : 'json',
 			contentType: "application/json; charset=utf-8",
+			headers: {"Authorization": "Bearer "+localStorage.getItem('token')},
 			success : function(data) {
 				//var returnedData = JSON.parse(data);
 				console.log(data);

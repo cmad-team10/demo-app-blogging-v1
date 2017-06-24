@@ -17,11 +17,13 @@ public class User {
 
     private String password;
 
-    private String firstName;
+    private String firstName = "Harsha";
 
-    private String lastName;
+    private String lastName = "Jayaramchar";
 
     private String emailId;
+    
+    private String token;
 
     public User() {
         super();
@@ -80,4 +82,14 @@ public class User {
         this.emailId = emailId;
         return this;
     }
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+    
+    
 }

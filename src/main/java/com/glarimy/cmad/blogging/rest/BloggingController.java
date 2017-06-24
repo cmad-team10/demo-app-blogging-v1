@@ -25,6 +25,7 @@ import com.glarimy.cmad.blogging.api.EntityException;
 import com.glarimy.cmad.blogging.api.BlogLibrary;
 import com.glarimy.cmad.blogging.service.BlogService;
 import com.glarimy.cmad.blogging.service.CommentService;
+import com.glarimy.cmad.blogging.utils.jwt.JWTTokenNeeded;
 
 
 @Path("/blogging")
@@ -102,6 +103,7 @@ public class BloggingController {
 	
 	@GET
 	@Path("/blog")
+	@JWTTokenNeeded
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAll() {
 		List<Blog> blogs = library.findAll();
