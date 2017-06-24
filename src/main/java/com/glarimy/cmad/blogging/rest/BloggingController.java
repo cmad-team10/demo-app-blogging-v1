@@ -37,6 +37,7 @@ public class BloggingController {
 	@POST
 	@Path("/blog")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@JWTTokenNeeded
 	public Response add(Blog blog) {
 		library.add(blog);
 		return Response.ok().build();
@@ -44,6 +45,7 @@ public class BloggingController {
 	@PUT
 	@Path("/blog")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@JWTTokenNeeded
 	public Response update(Blog blog) {
 		library.update(blog);
 		return Response.ok().build();
@@ -103,7 +105,6 @@ public class BloggingController {
 	
 	@GET
 	@Path("/blog")
-	@JWTTokenNeeded
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAll() {
 		List<Blog> blogs = library.findAll();

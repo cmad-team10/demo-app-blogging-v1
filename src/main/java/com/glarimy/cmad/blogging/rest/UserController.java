@@ -13,6 +13,7 @@ import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import com.glarimy.cmad.blogging.api.User;
+import com.glarimy.cmad.blogging.utils.jwt.JWTTokenNeeded;
 import com.glarimy.cmad.blogging.utils.jwt.KeyGenerator;
 import com.glarimy.cmad.blogging.utils.jwt.SecretKeyGenerator;
 
@@ -72,6 +74,13 @@ public class UserController {
     
     private Date toDate(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-}
+    }
+    
+    @GET
+    @Path("/isUserLogedIn")
+    @JWTTokenNeeded
+    public Response isUserLogedIn(){
+    	return Response.ok().build();
+    }
 
 }

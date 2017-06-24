@@ -3,14 +3,17 @@ $(document).ready(function() {
 	
 	$("#create-blog-icon").click(function(e) {
 		console.log("create blog");
+	    var token =	localStorage.getItem('token');
+	    if(token == undefined || token == ""){
+	    	alert("Not LogedIn");
+	    }
 		$("#list-blog").hide();
 		$("#view-blog").hide();
 		$("#create-blog").show();		
 	});
 	
 	$("#profile-icon").click(function(e) {
-		console.log("profile");
-		performLogin();		
+		console.log("profile");	
 	});
 	
 	$("#create-blog-submit").click(function(e){
@@ -108,8 +111,9 @@ $(document).ready(function() {
 			contentType: "application/json; charset=utf-8",
 			success : function(response) {
 				console.dir("login response:"+response);
-				localStorage.setItem("userName", response.firstName+" "+response.lastName);
+				localStorage.setItem("userName", response.firstName);
 				localStorage.setItem("token", response.token);
+				setLoginView(true);
 			},
 			error : function(xhr, ajaxOptions, thrownError){
 				console.log("login not successfull xhr :"+xhr.responseText);
@@ -144,6 +148,39 @@ $(document).ready(function() {
 		});
 	}
 	
+	$("#logout-icon").click(function(){
+		logOut();
+		setLoginView(false);
+	});
+	
+	$("#login-icon").click(function(){
+		performLogin();
+		setLoginView(true);
+	});
+	
+	function logOut(){
+		localStorage.setItem("userName", "");
+		localStorage.setItem("token", "");
+	}
+	
+	function setLoginView(isLogedIn){
+		if(isLogedIn == true){
+			$("#logout-icon").show();
+			$("#login-icon").hide();
+			$("#profile-icon p").html(localStorage.getItem("userName"));
+		}else{
+			$("#logout-icon").hide();
+			$("#login-icon").show();
+			$("#profile-icon p").html("Profile");
+		}
+	}
+	
 	viewList();
+	
+	if(localStorage.getItem('token') != ""){
+		setLoginView(true);
+	}else{
+		setLoginView(false);
+	}
 
 });
