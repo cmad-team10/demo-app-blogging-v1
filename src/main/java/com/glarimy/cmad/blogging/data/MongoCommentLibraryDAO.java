@@ -33,8 +33,9 @@ public class MongoCommentLibraryDAO extends BasicDAO<Comment, Long> implements C
 
 	@Override
 	public List<Comment> readComments(ObjectId blogId) {
-		List<Comment> comments = createQuery().filter("blog", blogId).asList();
-        return comments;
+		System.out.println("kavitha");
+		//List<Comment> comments = createQuery().filter("blog", blogId).asList();
+        return null;
 	}
 
 	@Override

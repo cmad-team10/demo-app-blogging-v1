@@ -13,8 +13,8 @@ public class MongoUtils {
 
 	    private static MongoClient getMongoClientInstance() {
 	        if (mongoClient == null) {
-	            String mongoHost = "10.128.0.6";
-	            String mongoPort = "28001";
+	            String mongoHost = "localhost";
+	            String mongoPort = "27017";
 	            String connStr = mongoHost + ":" + mongoPort;
 	            mongoClient = new MongoClient(connStr);
 	        }

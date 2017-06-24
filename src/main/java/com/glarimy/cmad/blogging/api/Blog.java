@@ -20,8 +20,6 @@ import org.bson.types.ObjectId;
 
 
 @Entity
-@Validation("{ title : { $type : string },"
-        + "blogText : {$type : string }")
 public class Blog {
 	@Id
 	@Property("_id")
