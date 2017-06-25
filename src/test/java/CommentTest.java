@@ -6,6 +6,7 @@ import com.glarimy.cmad.blogging.service.BlogService;
 import com.glarimy.cmad.blogging.service.CommentService;
 
 public class CommentTest {
+	@Test
 	//http://localhost:8089/cmad-rest/rest/blogging/blog/594bf17b08fdc1c60542b6ad/comments
 	public void testCommentInsert() {
 	Blog testblogdata = new Blog();

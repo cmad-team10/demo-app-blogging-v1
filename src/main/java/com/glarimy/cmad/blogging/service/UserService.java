@@ -35,7 +35,7 @@ public class UserService implements UsersLibrary {
 		// TODO Auto-generated method stub
         userdao.update(user);
 
-		return null;
+		return user;
 	}
 
 	@Override
