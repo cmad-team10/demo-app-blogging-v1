@@ -95,10 +95,11 @@ $(document).ready(function() {
 		});	
 	});
 	
-	function performLogin(){
+	function performLogin(userId, password){
+		console.log("performLogin:"+userId+" "+password);
 		var login = {
-				"userId" : "harsha",
-				"password" : "pwd"
+				"userId" : userId,
+				"password" : password
 			}
 		$.ajax({
 			url : 'rest/users/login',
@@ -107,7 +108,7 @@ $(document).ready(function() {
 			contentType: "application/json; charset=utf-8",
 			success : function(response) {
 				console.dir("login response:"+response);
-				localStorage.setItem("userName", response.firstName);
+				localStorage.setItem("userName", response.userId);
 				localStorage.setItem("token", response.token);
 				setLoginView(true);
 			},
@@ -119,6 +120,8 @@ $(document).ready(function() {
 			data : JSON.stringify(login)
 		});
 	}
+	
+
 	
 	function viewList(){
 		console.log("calling viewList");
@@ -152,10 +155,48 @@ $(document).ready(function() {
 	});
 	
 	$("#login-icon").click(function(){
-		performLogin();
 		showDiv("login-signup");
-		setLoginView(true);
-
+	});
+	
+	$("#login-button").click(function(){
+		var userId = $("#login-userId").val();
+		var password = $("#login-pwd").val();
+		performLogin(userId,password);
+		
+	});
+	
+	$("#signup-button").click(function(){
+		var userId = $("#signup-userId").val();
+		var password = $("#signup-password").val();
+		var firstName = $("#signup-firstName").val();
+		var lastName = $("#signup-lastName").val();
+		var emailId = $("#signup-emailId").val();
+		var userData = {
+				"userId" : userId,
+				"password" : password,
+				"firstName" : firstName,
+				"lastName" : lastName,
+				"emailId" : emailId
+		}
+		$.ajax({
+			url : 'rest/users/user',
+			type : 'post',
+			dataType : 'json',
+			contentType: "application/json; charset=utf-8",
+			success : function(response) {
+				console.dir("register response:"+response);
+				localStorage.setItem("userName", response.firstName);
+				localStorage.setItem("token", response.token);
+				setLoginView(true);
+			},
+			error : function(xhr, ajaxOptions, thrownError){
+				console.log("register not successfull xhr :"+xhr.responseText);
+				console.log("register not successfull ajaxOptions:"+ajaxOptions);
+				console.log("register not successfull thrownError:"+thrownError);
+			},
+			data : JSON.stringify(userData)
+		});
+		
 	});
 	
 	function logOut(){
@@ -167,11 +208,13 @@ $(document).ready(function() {
 		if(isLogedIn == true){
 			$("#logout-icon").show();
 			$("#login-icon").hide();
+			$("#profile-icon-span").show();
 			$("#profile-icon p").html(localStorage.getItem("userName"));
 		}else{
 			$("#logout-icon").hide();
 			$("#login-icon").show();
-			$("#profile-icon p").html("Profile");
+			$("#profile-icon-span").hide();
+			$("#profile-icon p").html(localStorage.getItem(""));
 		}
 	}
 	
