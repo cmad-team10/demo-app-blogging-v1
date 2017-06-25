@@ -84,7 +84,7 @@ public class BloggingController {
 		    comment.setBlogId(blogid);
 			comment.setBlog(blog);
 			commentLibrary.addComment(comment);
-			return Response.ok().build();
+			return Response.ok().entity(comment).build();
 	    }
 	  
 	   @GET
