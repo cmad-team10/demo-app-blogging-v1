@@ -20,9 +20,12 @@ $(document).ready(function() {
 		console.log('inside create-blog-submit:'+blog);
 		var title = $("#create-blog-title").val();
 		var content = $("#create-blog-content").val();
+		var userId = localStorage.getItem("userName");
 		var blog = {
 			"title" : title,
-			"details" : content
+			"details" : content,
+			"userId" : userId
+			
 		}
 		console.log('calling:'+blog);
 		$.ajax({
@@ -111,14 +114,19 @@ $(document).ready(function() {
 				localStorage.setItem("userName", response.userId);
 				localStorage.setItem("token", response.token);
 				setLoginView(true);
+				showDiv("list-blog");
 			},
 			error : function(xhr, ajaxOptions, thrownError){
-				console.log("login not successfull xhr :"+xhr.responseText);
-				console.log("login not successfull ajaxOptions:"+ajaxOptions);
+				//console.log("login not successfull xhr :"+xhr.responseText);
+				//console.log("login not successfull ajaxOptions:"+ajaxOptions);
 				console.log("login not successfull thrownError:"+thrownError);
+				if(thrownError == "Unauthorized"){
+                    $("#login-failure p").html("Login/Password incorrect !!");
+				}
 			},
 			data : JSON.stringify(login)
-		});
+		});	
+		
 	}
 	
 
@@ -155,17 +163,20 @@ $(document).ready(function() {
 	});
 	
 	$("#login-icon").click(function(){
+		$("#login-failure p").html("");
 		showDiv("login-signup");
 	});
 	
-	$("#login-button").click(function(){
+	$("#login-button").click(function(e){
+		e.preventDefault();
 		var userId = $("#login-userId").val();
 		var password = $("#login-pwd").val();
 		performLogin(userId,password);
 		
 	});
 	
-	$("#signup-button").click(function(){
+	$("#signup-button").click(function(e){
+		e.preventDefault();
 		var userId = $("#signup-userId").val();
 		var password = $("#signup-password").val();
 		var firstName = $("#signup-firstName").val();
@@ -188,6 +199,7 @@ $(document).ready(function() {
 				localStorage.setItem("userName", response.firstName);
 				localStorage.setItem("token", response.token);
 				setLoginView(true);
+				showDiv("list-blog");
 			},
 			error : function(xhr, ajaxOptions, thrownError){
 				console.log("register not successfull xhr :"+xhr.responseText);

@@ -55,6 +55,7 @@ public class UserController {
             // Issue a token for the user
             String token = issueToken(user.getUserId());
             user.setToken(token);
+            user.setPassword("");
             // Return the token on the response
             return Response.ok().entity(user).header(AUTHORIZATION, "Bearer " + token).build();
 
