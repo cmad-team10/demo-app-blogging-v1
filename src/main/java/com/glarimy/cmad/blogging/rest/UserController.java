@@ -23,7 +23,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import com.glarimy.cmad.blogging.api.EntityException;
 import com.glarimy.cmad.blogging.api.User;
+import com.glarimy.cmad.blogging.service.UserService;
 import com.glarimy.cmad.blogging.utils.jwt.JWTTokenNeeded;
 import com.glarimy.cmad.blogging.utils.jwt.KeyGenerator;
 import com.glarimy.cmad.blogging.utils.jwt.SecretKeyGenerator;
@@ -32,7 +34,8 @@ import com.glarimy.cmad.blogging.utils.jwt.SecretKeyGenerator;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserController {
-	
+    private static UserService users = new UserService();
+
 	private KeyGenerator keyGenerator = new SecretKeyGenerator();
     
     private Logger logger = Logger.getLogger(getClass().getName());
@@ -47,7 +50,7 @@ public class UserController {
             logger.info("#### login/password : " + user.getUserId() + "/" + user.getPassword());
             
             // Authenticate the user using the credentials provided
-           // authenticate(user.getUserId(), user.getPassword());
+            authenticate(user.getUserId(), user.getPassword());
 
             // Issue a token for the user
             String token = issueToken(user.getUserId());
@@ -82,7 +85,7 @@ public class UserController {
     @Path("/user")
     public Response saveUser(User user){
     	//TODO Kavitha save the user. Password need to be encrypted. But to start with store it in plain text. Later we can encrypt
-    	
+    	users.create(user);
     	//get the token and send 
     	String token = issueToken(user.getUserId());
         user.setToken(token);
@@ -93,12 +96,12 @@ public class UserController {
     @Path("/user/{userId}")
     public Response getUser(@PathParam("userId") String userId){
     	//TODO Kavitha get the user deatils
-    	User user = null;
-    	
+        User user = users.read(userId);
     	return Response.ok().entity(user).build();
     }
     
-    private boolean authenticate(String userId, String password){
+    private boolean authenticate(String userId, String password) throws SecurityException, EntityException{
+    	users.authenticate(userId, password);
     	//TODO Kavitha, check if userId and password is present in DB, if yes then return true else return false.
     	return true;
     }

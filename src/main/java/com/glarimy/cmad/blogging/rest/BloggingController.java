@@ -61,13 +61,13 @@ public class BloggingController {
 	}
 	
 	  @GET
-	    @Path("/blog/{blogId}/comments")
+	    @Path("/blog/{blogId}/comment")
 	    public Response readAllComments(@Context UriInfo info) {
 	        List<Comment> comments;
 	        GenericEntity<List<Comment>> entities;
 	        String blogIdStr = info.getPathParameters().getFirst("blogId");
 	        ObjectId blogId = new ObjectId(blogIdStr);
-
+            System.out.println("readAllComments kavita");
 	        comments = commentLibrary.findComments(blogId);
 	        entities = new GenericEntity<List<Comment>>(comments) {
 	        };
@@ -77,16 +77,12 @@ public class BloggingController {
 	  @POST
 		@Path("/blog/{blogid}/comment")
 		@Consumes(MediaType.APPLICATION_JSON)
-		public Response addComment(Comment comment,@PathParam("blogid") String blogid) {
+		public Response addComment(Comment comment,@PathParam("blogid") ObjectId blogid) throws DataNotFoundException {
 		    Blog blog = new Blog();
-		    blog.setBlogId(new ObjectId(blogid));
+		    blog.setBlogId(blogid);
+		    comment.setBlogId(blogid);
 			comment.setBlog(blog);
-			try {
-				commentLibrary.update(comment);
-			} catch (DataNotFoundException | EntityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			commentLibrary.addComment(comment);
 			return Response.ok().build();
 	    }
 	  
