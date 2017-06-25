@@ -17,6 +17,7 @@ $(document).ready(function() {
 	});
 	
 	$("#create-blog-submit").click(function(e){
+		e.preventDefault();
 		console.log('inside create-blog-submit:'+blog);
 		var title = $("#create-blog-title").val();
 		var content = $("#create-blog-content").val();
@@ -33,8 +34,22 @@ $(document).ready(function() {
 			type : 'post',
 			dataType : 'json',
 			contentType: "application/json; charset=utf-8",
+			headers: {"Authorization": "Bearer "+localStorage.getItem('token')},
 			success : function(data) {
-				("#list-blog-icon a").trigger('click');
+				$("#create-blog-title").val('');
+				$("#create-blog-content").val('');
+				showDiv("list-blog");
+				viewList();				
+			},
+			error : function(xhr, ajaxOptions, thrownError){
+			   console.log("create-blog-submit not successfull xhr :"+xhr.responseText);
+			   console.log("create-blog-submit not successfull ajaxOptions:"+ajaxOptions);
+			   console.log("create-blog-submit not successfull thrownError:"+thrownError);
+			   if(thrownError == "Unauthorized"){
+				   logOut();
+				   setLoginView(false);
+				   $("#login-icon").trigger('click');
+				}
 			},
 			data : JSON.stringify(blog)
 		});	
@@ -78,7 +93,8 @@ $(document).ready(function() {
 		
 	});
 	
-	$("#create-comment-submit").click(function(){
+	$("#create-comment-submit").click(function(e){
+		e.preventDefault();
 		var blogId = $("#create-comment-blogId").val();
 		var commentData = $("#create-blog-comment").val();	
 		var comment = {
@@ -90,6 +106,7 @@ $(document).ready(function() {
 			type : 'post',
 			dataType : 'json',
 			contentType: "application/json; charset=utf-8",
+			headers: {"Authorization": "Bearer "+localStorage.getItem('token')},
 			success : function(data) {
 				console.log("create-comment-submit:"+data);
 				$("#blog-comment-list").append( '<li class="list-group-item">'+commentData+'</li>');
@@ -244,6 +261,11 @@ $(document).ready(function() {
 		$("#login-signup").hide();
 		$("#create-blog").hide();
 		$("#"+id).show();
+	}
+	
+	function loginAgain(){
+		logOut();
+		setLoginView(false);
 	}
 
 });

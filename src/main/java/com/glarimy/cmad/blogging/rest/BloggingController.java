@@ -40,7 +40,7 @@ public class BloggingController {
 	@JWTTokenNeeded
 	public Response add(Blog blog) {
 		library.add(blog);
-		return Response.ok().build();
+		return Response.ok().entity(blog).build();
 	}
 	@PUT
 	@Path("/blog")
@@ -77,6 +77,7 @@ public class BloggingController {
 	  @POST
 		@Path("/blog/{blogid}/comment")
 		@Consumes(MediaType.APPLICATION_JSON)
+	   @JWTTokenNeeded
 		public Response addComment(Comment comment,@PathParam("blogid") ObjectId blogid) throws DataNotFoundException {
 		    Blog blog = new Blog();
 		    blog.setBlogId(blogid);
