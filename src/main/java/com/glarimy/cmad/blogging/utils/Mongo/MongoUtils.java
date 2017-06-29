@@ -17,7 +17,7 @@ public class MongoUtils {
 	              //String mongoHost = "35.192.55.147";
 	              //String mongoPort = "28001";
 	            //String mongoHost = "173.39.66.176";
-	            String mongoHost = "10.128.0.6";
+	            String mongoHost = "10.140.0.2";
 	            String mongoPort = "28001";
 	            String connStr = mongoHost + ":" + mongoPort;
 	            mongoClient = new MongoClient(connStr);
