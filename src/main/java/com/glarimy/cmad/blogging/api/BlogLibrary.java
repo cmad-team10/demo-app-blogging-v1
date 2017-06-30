@@ -13,7 +13,7 @@ import com.glarimy.cmad.blogging.api.BlogContentDataException;
 import com.glarimy.cmad.blogging.api.BlogLibraryException;
 
 public interface BlogLibrary {
-	public void add(Blog blog) throws BlogContentDataException,BlogLibraryException;
+	public Blog add(Blog blog) throws BlogContentDataException,BlogLibraryException;
 	
 	public void update(Blog blog) throws BlogContentDataException,BlogLibraryException;
 	
