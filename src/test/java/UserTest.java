@@ -9,6 +9,7 @@ import com.glarimy.cmad.blogging.service.UserService;;
 
 
 public class UserTest {
+	@Test
 	UserService testuserservice = new UserService();
 	public void testUserInsert(){
 		User testuserdata = new User();
