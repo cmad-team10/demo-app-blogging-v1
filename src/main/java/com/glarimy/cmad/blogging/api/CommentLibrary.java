@@ -10,7 +10,7 @@ import com.glarimy.cmad.blogging.api.DataNotFoundException;
 
 
 public interface CommentLibrary {
-	public void addComment(Comment comment);
+	public Comment addComment(Comment comment);
     public Comment read(ObjectId commentId) throws DataNotFoundException, EntityException;
     public Comment update(Comment comment) throws DataNotFoundException, EntityException;
 

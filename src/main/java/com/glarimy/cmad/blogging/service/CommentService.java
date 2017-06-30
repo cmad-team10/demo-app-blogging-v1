@@ -16,9 +16,10 @@ public class CommentService  implements CommentLibrary{
 	private CommentLibraryDAO commentdao= new MongoCommentLibraryDAO();
 
     @Override
-    public void addComment(Comment comment) {
+    public Comment addComment(Comment comment) {
     	// TODO Auto-generated method stub
     	commentdao.createComment(comment);
+    	return comment;
     }
     @Override
 	public List<Comment> findComments(ObjectId blogid) {

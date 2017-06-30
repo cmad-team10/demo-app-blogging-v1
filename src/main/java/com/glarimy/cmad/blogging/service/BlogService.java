@@ -24,11 +24,12 @@ import com.glarimy.cmad.blogging.data.MongoBlogLibraryDAO;
 public class BlogService implements BlogLibrary{
 	private BlogLibraryDAO blogdao = new MongoBlogLibraryDAO();
 	@Override
-	public void add(Blog blog) throws BlogContentDataException, BlogLibraryException {
+	public Blog add(Blog blog) throws BlogContentDataException, BlogLibraryException {
 		// TODO Auto-generated method stub
 		 if (blog == null)
 	            throw new BlogLibraryException();
 		blogdao.create(blog);
+		return blog;
 	}
 	
 	@Override
