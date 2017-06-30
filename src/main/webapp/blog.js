@@ -91,7 +91,7 @@ $(document).ready(function() {
 			}
 		});
 		
-	});
+	}); 
 	
 	$("#create-comment-submit").click(function(e){
 		e.preventDefault();
